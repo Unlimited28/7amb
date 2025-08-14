@@ -1,0 +1,81 @@
+<!-- ROLE: FinanceOnly -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Requests - Finance</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/manage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="../assets/logo.png" alt="Logo" class="logo-img">
+            <h2 class="role">Finance Panel</h2>
+        </div>
+        <ul class="nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="associations.html">Associations</a></li>
+            <li class="active"><a href="payment-requests.html">Payment Requests</a></li>
+            <li><a href="voucher-management.html">Voucher Management</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="../index.html">Log out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Payment Requests Sent</h1>
+
+        <section class="manage-section">
+            <table class="manage-table">
+                <thead>
+                    <tr>
+                        <th>Association</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Mock Data -->
+                    <tr>
+                        <td>{Agape Baptist Association}</td>
+                        <td>{Annual Dues}</td>
+                        <td>{₦5,000}</td>
+                        <td>{2024-03-31}</td>
+                        <td><span class="status-badge closed">Closed</span></td>
+                    </tr>
+                    <tr>
+                        <td>{Zion Baptist Association}</td>
+                        <td>{Camp Fees}</td>
+                        <td>{₦50,000}</td>
+                        <td>{2024-08-31}</td>
+                        <td><span class="status-badge open">Open</span></td>
+                    </tr>
+                     <tr>
+                        <td>{Bethel Baptist Association}</td>
+                        <td>{Exam Fees}</td>
+                        <td>{₦10,000}</td>
+                        <td>{2024-09-15}</td>
+                        <td><span class="status-badge reminded">Reminded</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+  </div>
+
+  <!-- Backend Notes:
+    - Replace {placeholders} with real data.
+    - Enforce role guards server-side matching these role markers.
+    - Wire uploads (camp, payments) to server endpoints.
+  -->
+</body>
+</html>

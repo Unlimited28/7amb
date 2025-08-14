@@ -1,0 +1,91 @@
+<!-- ROLE: SuperAdminOnly -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ads Management - Super Admin</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/manage.css">
+  <link rel="stylesheet" href="../styles/results.css"> <!-- Reusing for modal -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="../assets/logo.png" alt="Logo" class="logo-img">
+            <h2 class="role">Super Admin</h2>
+        </div>
+        <ul class="nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="manage-users.html">Manage Users</a></li>
+            <li><a href="manage-admins.html">Manage Admins</a></li>
+            <li><a href="exams.html">Exams</a></li>
+            <li><a href="finance.html">Finance</a></li>
+            <li class="active"><a href="ads-management.html">Ads Management</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="system-settings.html">System Settings</a></li>
+            <li><a href="../index.html">Log out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Ads Management</h1>
+
+        <section class="manage-section">
+            <div class="controls">
+                <button id="add-ad-btn" class="btn">Add New Ad</button>
+            </div>
+            <table class="manage-table">
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Expiry</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="../assets/new_1.jpg" alt="Ad Preview" width="100"></td>
+                        <td>{Summer Camp Ad}</td>
+                        <td>{Image}</td>
+                        <td>{2024-09-01}</td>
+                        <td><span class="status-badge active">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+  </div>
+
+  <!-- Add Ad Modal -->
+  <div id="ad-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>Add New Ad</h2>
+          <form id="ad-form">
+              <div class="form-group"><label>Title</label><input type="text" required></div>
+              <div class="form-group"><label>Type</label><select><option>Image</option><option>Video</option></select></div>
+              <div class="form-group"><label>Media (URL or Upload)</label><input type="text" placeholder="https://example.com/image.jpg"></div>
+              <div class="form-group"><label>Expiry Date</label><input type="date" required></div>
+              <button type="submit" class="btn">Save Ad</button>
+          </form>
+      </div>
+  </div>
+
+  <script src="../assets/js/ads-management.js"></script>
+
+  <!-- Backend Notes:
+    - Replace {placeholders} with real data.
+    - Enforce role guards server-side matching these role markers.
+    - Wire uploads (camp, payments) to server endpoints.
+  -->
+</body>
+</html>
