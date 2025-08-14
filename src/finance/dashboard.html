@@ -1,0 +1,73 @@
+<!-- ROLE: FinanceOnly -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="../assets/logo.png" alt="Logo" class="logo-img">
+            <h2 class="role">Finance Panel</h2>
+        </div>
+        <ul class="nav">
+            <li class="active"><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="associations.html">Associations</a></li>
+            <li><a href="payment-requests.html">Payment Requests</a></li>
+            <li><a href="voucher-management.html">Voucher Management</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="../index.html">Log out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Profile Card -->
+      <div class="profile-card">
+        <div class="profile-info">
+          <h2 data-placeholder="user-full-name">Welcome, {Finance User Name}!</h2>
+          <p>Role: <span data-placeholder="user-role">Finance Panel</span></p>
+        </div>
+        <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
+      </div>
+
+      <!-- Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <p>Associations with Pending Payments</p>
+          <h3 data-placeholder="associations-with-pending">{associations_with_pending}</h3>
+        </div>
+        <div class="stat-card">
+          <p>Payment Requests Sent</p>
+          <h3 data-placeholder="payment-requests-sent">{payment_requests_sent}</h3>
+        </div>
+        <div class="stat-card">
+          <p>Active Vouchers</p>
+          <h3 data-placeholder="vouchers-active">{vouchers_active}</h3>
+        </div>
+      </div>
+
+      <!-- Placeholder for recent activity or notifications -->
+       <section class="activity-feed">
+          <h2>Recent Payment Activities</h2>
+          <div class="feed-item">{Payment proof received from Agape Association}</div>
+          <div class="feed-item">{Payment request sent to Zion Association}</div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Backend Notes:
+    - Replace {placeholders} with real data.
+    - Enforce role guards server-side matching these role markers.
+    - Wire uploads (camp, payments) to server endpoints.
+  -->
+</body>
+</html>

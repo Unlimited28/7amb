@@ -1,0 +1,104 @@
+<!-- ROLE: PresidentOnly -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Ambassadors - Admin Dashboard</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/manage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="../assets/logo.png" alt="Logo" class="logo-img">
+            <h2 class="role">President</h2>
+        </div>
+        <ul class="nav">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li class="active"><a href="manage-ambassadors.html">Manage Ambassadors</a></li>
+            <li><a href="exams.html">Exams (Approve)</a></li>
+            <li><a href="camp-registration.html">Camp Registration</a></li>
+            <li><a href="payments.html">Payments (Receipts)</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../gallery.html">Gallery</a></li>
+            <li><a href="../index.html">Log out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Manage Ambassadors</h1>
+
+        <section class="manage-section">
+            <div class="controls">
+                <input type="text" id="search-input" placeholder="Search by name or UID...">
+                <select id="rank-filter">
+                    <option value="">Filter by Rank</option>
+                    <!-- Ranks will be populated by JS -->
+                </select>
+                <select id="status-filter">
+                    <option value="">Filter by Status</option>
+                    <option value="active">Active</option>
+                    <option value="pending_approval">Pending Approval</option>
+                    <option value="revoked">Revoked</option>
+                </select>
+            </div>
+
+            <table class="manage-table">
+                <thead>
+                    <tr>
+                        <th>UID</th>
+                        <th>Full Name</th>
+                        <th>Rank</th>
+                        <th>Church</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ambassadors-tbody">
+                    <!-- Mock Data -->
+                    <tr data-status="active">
+                        <td>{UID001}</td>
+                        <td>{John Doe}</td>
+                        <td>{Envoy}</td>
+                        <td>{First Baptist Church}</td>
+                        <td><span class="status-badge active">Active</span></td>
+                        <td><button class="btn action-btn">Approve for Exam</button></td>
+                    </tr>
+                    <tr data-status="pending_approval">
+                        <td>{UID002}</td>
+                        <td>{Peter Jones}</td>
+                        <td>{Candidate}</td>
+                        <td>{Zion Baptist Church}</td>
+                        <td><span class="status-badge pending">Pending Approval</span></td>
+                        <td><button class="btn action-btn">Approve for Exam</button></td>
+                    </tr>
+                    <tr data-status="revoked">
+                        <td>{UID003}</td>
+                        <td>{Samuel Lee}</td>
+                        <td>{Intern}</td>
+                        <td>{New Grace Baptist}</td>
+                        <td><span class="status-badge revoked">Revoked</span></td>
+                        <td><button class="btn action-btn" disabled>Approve for Exam</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/manage-ambassadors.js"></script>
+
+  <!-- Backend Notes:
+    - Replace {placeholders} with real data.
+    - Enforce role guards server-side matching these role markers.
+    - Wire uploads (camp, payments) to server endpoints.
+  -->
+</body>
+</html>
