@@ -1,0 +1,73 @@
+/* System Settings Form Styles */
+#settings-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#settings-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#settings-form label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#settings-form input[type="text"],
+#settings-form input[type="email"],
+#settings-form textarea {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#settings-form input[type="text"]:focus,
+#settings-form input[type="email"]:focus,
+#settings-form textarea:focus {
+    border-color: #001f3f;
+    box-shadow: 0 0 5px rgba(0, 31, 63, 0.2);
+    outline: none;
+}
+
+#settings-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#settings-form .btn {
+    background-color: #001f3f;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-self: start;
+}
+
+#settings-form .btn:hover {
+    background-color: #DAA520;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    #settings-form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    #settings-form .form-group:is(
+        :has(textarea[rows="3"]),
+        :has(textarea[rows="5"])
+    ) {
+        grid-column: span 2;
+    }
+}
