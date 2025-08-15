@@ -79,6 +79,95 @@ body {
     border-radius: 50%;
 }
 
+/* Header Actions & Notification Bell */
+.profile-card {
+    position: relative; /* For dropdown positioning */
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.notification-bell {
+    position: relative;
+}
+
+.bell-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    position: relative;
+}
+
+.bell-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 300px;
+    z-index: 10;
+}
+
+.notification-bell:hover .notification-dropdown,
+.notification-dropdown:hover {
+    display: block; /* Show on hover */
+}
+
+.notification-dropdown h4 {
+    margin: 0;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-dropdown .notification-item {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-dropdown .notification-item:hover {
+    background-color: #f9f9f9;
+}
+
+.notification-dropdown .view-all {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    color: #001f3f;
+    text-decoration: none;
+}
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

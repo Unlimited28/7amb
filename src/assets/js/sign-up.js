@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const passcodes = {
         president: "OGBC/ACCESS/PRESIDENT",
-        superadmin: "OGBC/ACCESS/SUPER"
+        superadmin: "OGBC/ACCESS/SUPER",
+        finance: "OGBC/ACCESS/FIN"
     };
 
     // Populate dropdowns
@@ -96,9 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 requiredPasscode = passcodes.president;
             } else if (formId === 'superadmin-form') {
                 requiredPasscode = passcodes.superadmin;
+            } else if (formId === 'finance-form') {
+                requiredPasscode = passcodes.finance;
             }
 
-            if (passcodeField.value !== requiredPasscode) {
+            if (requiredPasscode && passcodeField.value !== requiredPasscode) {
                 alert('Invalid passcode.');
                 return false;
             }

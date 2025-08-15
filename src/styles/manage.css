@@ -91,8 +91,43 @@ h1 {
     background-color: #fd7e14; /* Orange */
 }
 
+.status-badge.eligible { background-color: #28a745; }
+.status-badge.not-eligible { background-color: #dc3545; }
+
 /* Action button styles */
 .action-btn {
     padding: 6px 10px;
     font-size: 12px;
+}
+
+/* Table Controls: Search and Filters */
+.table-controls {
+    margin-bottom: 15px;
+}
+
+.search-table {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+/* Pagination placeholder styles */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination button {
+    background: none;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #001f3f;
+    color: #fff;
+    border-color: #001f3f;
 }

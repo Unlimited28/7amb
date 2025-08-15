@@ -1,42 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Notifications page script loaded.');
-
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const markAllReadBtn = document.getElementById('mark-all-read-btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const notificationItems = document.querySelectorAll('.notification-item');
 
-    // Handle filtering
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-            const filter = btn.dataset.filter;
+                const filter = button.dataset.filter;
 
-            notificationItems.forEach(item => {
-                if (filter === 'all') {
-                    item.style.display = 'flex';
-                } else if (filter === 'unread') {
-                    if (item.classList.contains('unread')) {
+                // Filter notifications
+                notificationItems.forEach(item => {
+                    if (filter === 'all') {
                         item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
+                    } else if (filter === 'unread') {
+                        if (item.classList.contains('unread')) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
                     }
-                }
+                });
             });
-        });
-    });
-
-    // Handle "Mark all as read"
-    if (markAllReadBtn) {
-        markAllReadBtn.addEventListener('click', () => {
-            notificationItems.forEach(item => {
-                item.classList.remove('unread');
-            });
-            // Optionally, switch back to the 'all' filter
-            document.querySelector('.filter-btn[data-filter="all"]').click();
-            alert('All notifications marked as read. (Frontend only)');
         });
     }
+
+    // Add logic for "Mark as Read" buttons
+    const markAsReadButtons = document.querySelectorAll('.notification-item .btn-sm-secondary');
+    markAsReadButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const item = e.target.closest('.notification-item');
+            if (item) {
+                item.classList.remove('unread');
+                item.querySelector('.icon-col').textContent = '✔️';
+                e.target.remove(); // Remove the button after clicking
+            }
+        });
+    });
 });

@@ -1,35 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Blog Management script loaded.');
-
-    const modal = document.getElementById('post-modal');
+    // --- Modal Handling ---
     const newPostBtn = document.getElementById('new-post-btn');
+    const modal = document.getElementById('post-modal');
     const closeBtn = modal.querySelector('.close-btn');
-    const postForm = document.getElementById('post-form');
-    const tableBody = document.querySelector('.manage-table tbody');
 
-    // Modal handling
     const openModal = () => modal.style.display = 'block';
     const closeModal = () => modal.style.display = 'none';
 
-    newPostBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
+    if (newPostBtn) newPostBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    // Handle form submission
-    postForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Blog post saved successfully! (Frontend only)');
-        postForm.reset();
-        closeModal();
-    });
-
-    // Handle edit button
-    tableBody.addEventListener('click', (e) => {
-        if (e.target.classList.contains('edit-btn')) {
-            openModal();
-            // In a real app, you would populate the form with the post data
+        if (e.target === modal) {
+            closeModal();
         }
     });
+
+    // --- WYSIWYG Editor Logic ---
+    const editorToolbar = document.querySelector('.wysiwyg-editor .toolbar');
+    const editorContent = document.getElementById('editor-content');
+
+    if (editorToolbar) {
+        editorToolbar.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (button) {
+                const command = button.getAttribute('data-command');
+                document.execCommand(command, false, null);
+                editorContent.focus();
+            }
+        });
+    }
+
+    // --- Form Submission ---
+    const postForm = document.getElementById('post-form');
+    if (postForm) {
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('post-title').value;
+            const content = editorContent.innerHTML; // Get content from the editor
+
+            // In a real app, you'd send this data to the server
+            console.log({
+                title,
+                content
+            });
+
+            alert('Frontend Only: Post saved!');
+            closeModal();
+            postForm.reset();
+            editorContent.innerHTML = '';
+        });
+    }
 });

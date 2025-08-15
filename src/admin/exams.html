@@ -1,13 +1,14 @@
-<!-- ROLE: PresidentOnly -->
+<!-- ROLE: PRESIDENT ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Approve Exams - Admin Dashboard</title>
+  <title>Exam Approvals - President</title>
   <link rel="stylesheet" href="../styles/dashboard.css">
   <link rel="stylesheet" href="../styles/manage.css">
-  <link rel="stylesheet" href="../styles/tabs.css">
+  <!-- Reusing ads management CSS for the toggle switch -->
+  <link rel="stylesheet" href="../styles/ads-management.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,85 +21,67 @@
             <h2 class="role">President</h2>
         </div>
         <ul class="nav">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-ambassadors.html">Manage Ambassadors</a></li>
-            <li class="active"><a href="exams.html">Exams (Approve)</a></li>
-            <li><a href="camp-registration.html">Camp Registration</a></li>
-            <li><a href="payments.html">Payments (Receipts)</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
-            <li><a href="../blog.html">Blog</a></li>
-            <li><a href="../gallery.html">Gallery</a></li>
+            <li data-role="PRESIDENT"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="PRESIDENT" class="active"><a href="exams.html">Exam Approvals</a></li>
+            <li data-role="PRESIDENT"><a href="payments.html">Payments</a></li>
+            <li data-role="PRESIDENT"><a href="camp-registration.html">Camp Registration</a></li>
+            <li data-role="PRESIDENT"><a href="manage-ambassadors.html">Ambassadors</a></li>
+            <li data-role="PRESIDENT"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1>Approve for Exam</h1>
+        <h1>Exam Approvals</h1>
+        <p>Approve Ambassadors in your association for the next published exam.</p>
 
-        <div class="tab-container">
-            <button class="tab-btn active" data-tab="awaiting">Awaiting Approval</button>
-            <button class="tab-btn" data-tab="approved">Approved</button>
-        </div>
-
-        <!-- Awaiting Approval Tab -->
-        <section id="awaiting-tab" class="tab-content active">
-            <h2>Awaiting Approval</h2>
+        <section class="manage-section">
             <table class="manage-table">
                 <thead>
                     <tr>
-                        <th>UID</th>
-                        <th>Full Name</th>
-                        <th>Rank</th>
-                        <th>Exam Applied For</th>
-                        <th>Action</th>
+                        <th>Name</th>
+                        <th>Current Rank</th>
+                        <th>Intended Rank</th>
+                        <th>Eligibility</th>
+                        <th>Approve</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody data-placeholder="ambassadors_list">
+                    <!-- Mock Data -->
                     <tr>
-                        <td>{UID004}</td>
                         <td>{David Mark}</td>
                         <td>{Senior Intern}</td>
-                        <td>{Envoy Rank Advancement Exam}</td>
-                        <td><button class="btn approve-btn">Approve</button></td>
+                        <td>{Envoy}</td>
+                        <td><span class="status-badge eligible">Eligible</span></td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </td>
                     </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Approved Tab -->
-        <section id="approved-tab" class="tab-content">
-            <h2>Approved List</h2>
-            <table class="manage-table">
-                <thead>
                     <tr>
-                        <th>UID</th>
-                        <th>Full Name</th>
-                        <th>Rank</th>
-                        <th>Exam Approved For</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{UID001}</td>
                         <td>{John Doe}</td>
                         <td>{Envoy}</td>
-                        <td>{Special Envoy Exam}</td>
-                        <td><button class="btn revoke-btn">Revoke</button></td>
+                        <td>{Special Envoy}</td>
+                        <td><span class="status-badge not-eligible">Not Eligible</span></td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" disabled>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="form-actions" style="margin-top: 20px;">
+                <button class="btn-primary">Save Approvals</button>
+            </div>
         </section>
     </main>
   </div>
 
   <script src="../assets/js/admin-exams.js"></script>
-
-  <!-- Backend Notes:
-    - Replace {placeholders} with real data.
-    - Enforce role guards server-side matching these role markers.
-    - Wire uploads (camp, payments) to server endpoints.
-  -->
 </body>
 </html>

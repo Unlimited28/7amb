@@ -1,0 +1,70 @@
+<!-- ROLE: PRESIDENT ONLY -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notifications - President</title>
+  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="../styles/manage.css">
+  <link rel="stylesheet" href="../styles/notifications.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-box">
+            <img src="../assets/logo.png" alt="Logo" class="logo-img">
+            <h2 class="role">President</h2>
+        </div>
+        <ul class="nav">
+            <li data-role="PRESIDENT"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="PRESIDENT"><a href="exams.html">Exam Approvals</a></li>
+            <li data-role="PRESIDENT"><a href="payments.html">Payments</a></li>
+            <li data-role="PRESIDENT"><a href="camp-registration.html">Camp Registration</a></li>
+            <li data-role="PRESIDENT"><a href="manage-ambassadors.html">Ambassadors</a></li>
+            <li data-role="PRESIDENT" class="active"><a href="notifications.html">Notifications</a></li>
+            <li><a href="../index.html">Log out</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Notifications</h1>
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="unread">Unread</button>
+        </div>
+
+        <div class="notification-list" data-placeholder="notifications_list">
+            <!-- Mock Notification (Unread) -->
+            <div class="notification-item unread">
+                <div class="icon-col">🔔</div>
+                <div class="content-col">
+                    <p class="title">New Exam Published</p>
+                    <p class="message">The 'Special Envoy Exam' has been published. Please approve your eligible candidates.</p>
+                    <p class="date">2024-08-20</p>
+                </div>
+                <div class="action-col">
+                    <button class="btn-sm-secondary">Mark as Read</button>
+                </div>
+            </div>
+            <!-- Mock Notification (Read) -->
+            <div class="notification-item">
+                <div class="icon-col">✔️</div>
+                <div class="content-col">
+                    <p class="title">Payment Reminder</p>
+                    <p class="message">A reminder that association dues for Q3 are due next month.</p>
+                    <p class="date">2024-08-15</p>
+                </div>
+                <div class="action-col"></div>
+            </div>
+        </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/notifications.js"></script>
+</body>
+</html>

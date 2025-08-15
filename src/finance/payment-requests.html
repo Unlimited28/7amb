@@ -19,20 +19,22 @@
             <h2 class="role">Finance Panel</h2>
         </div>
         <ul class="nav">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="associations.html">Associations</a></li>
-            <li class="active"><a href="payment-requests.html">Payment Requests</a></li>
-            <li><a href="voucher-management.html">Voucher Management</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
+            <li data-role="FINANCE"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="FINANCE" class="active"><a href="payment-requests.html">Payment Requests</a></li>
+            <li data-role="FINANCE"><a href="voucher-management.html">Vouchers</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1>Payment Requests Sent</h1>
+        <h1>Payment Requests</h1>
+        <div class="controls">
+            <button id="new-request-btn" class="btn-primary">New Payment Request</button>
+        </div>
 
         <section class="manage-section">
+            <h2>Sent Requests</h2>
             <table class="manage-table">
                 <thead>
                     <tr>
@@ -77,5 +79,42 @@
     - Enforce role guards server-side matching these role markers.
     - Wire uploads (camp, payments) to server endpoints.
   -->
+
+  <!-- New Request Modal -->
+  <div id="request-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>New Payment Request</h2>
+          <form id="request-form">
+              <div class="form-group">
+                  <label for="req-association">Association</label>
+                  <select id="req-association" required>
+                      <!-- Populated by JS -->
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="req-type">Type</label>
+                  <input type="text" id="req-type" placeholder="e.g., Annual Dues, Camp Fees" required>
+              </div>
+              <div class="form-group">
+                  <label for="req-description">Description</label>
+                  <textarea id="req-description" rows="3" placeholder="Optional details..."></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="req-amount">Amount (₦)</label>
+                  <input type="number" id="req-amount" min="0" required>
+              </div>
+              <div class="form-group">
+                  <label for="req-due-date">Due Date</label>
+                  <input type="date" id="req-due-date" required>
+              </div>
+              <div class="form-actions">
+                  <button type="submit" class="btn-primary">Send Request</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <script src="../assets/js/finance-payment-requests.js"></script>
 </body>
 </html>

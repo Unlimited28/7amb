@@ -1,4 +1,4 @@
-<!-- ROLE: SuperAdminOnly -->
+<!-- ROLE: SUPER_ADMIN ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
   <title>Ads Management - Super Admin</title>
   <link rel="stylesheet" href="../styles/dashboard.css">
   <link rel="stylesheet" href="../styles/manage.css">
-  <link rel="stylesheet" href="../styles/results.css"> <!-- Reusing for modal -->
+  <link rel="stylesheet" href="../styles/ads-management.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,15 +20,15 @@
             <h2 class="role">Super Admin</h2>
         </div>
         <ul class="nav">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-users.html">Manage Users</a></li>
-            <li><a href="manage-admins.html">Manage Admins</a></li>
-            <li><a href="exams.html">Exams</a></li>
-            <li><a href="finance.html">Finance</a></li>
-            <li class="active"><a href="ads-management.html">Ads Management</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="SUPER_ADMIN"><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="manage-users.html">User Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="exams.html">Exam Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="blog.html">Blog Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="gallery.html">Gallery Management</a></li>
+            <li data-role="SUPER_ADMIN" class="active"><a href="ads-management.html">Ads Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="finance.html">Finance (Oversight)</a></li>
+            <li data-role="SUPER_ADMIN"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
@@ -36,32 +36,38 @@
     <!-- Main Content -->
     <main class="main-content">
         <h1>Ads Management</h1>
-
-        <section class="manage-section">
-            <div class="controls">
-                <button id="add-ad-btn" class="btn">Add New Ad</button>
-            </div>
-            <table class="manage-table">
-                <thead>
-                    <tr>
-                        <th>Preview</th>
-                        <th>Title</th>
-                        <th>Type</th>
-                        <th>Expiry</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="../assets/new_1.jpg" alt="Ad Preview" width="100"></td>
-                        <td>{Summer Camp Ad}</td>
-                        <td>{Image}</td>
-                        <td>{2024-09-01}</td>
-                        <td><span class="status-badge active">Active</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="controls">
+            <button id="add-ad-btn" class="btn-primary">New Ad</button>
+        </div>
+        <table class="manage-table">
+            <thead>
+                <tr>
+                    <th>Preview</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody data-placeholder="ads_list">
+                <tr>
+                    <td><img src="../assets/pro.jpg" alt="Ad Preview" class="ad-preview"></td>
+                    <td>Sponsor Ad 1</td>
+                    <td>Image</td>
+                    <td>2024-08-01</td>
+                    <td>2024-09-01</td>
+                    <td>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td class="actions"><button class="btn-icon" title="Edit">✏️</button><button class="btn-icon" title="Delete">🗑️</button></td>
+                </tr>
+            </tbody>
+        </table>
     </main>
   </div>
 
@@ -69,23 +75,18 @@
   <div id="ad-modal" class="modal">
       <div class="modal-content">
           <span class="close-btn">&times;</span>
-          <h2>Add New Ad</h2>
+          <h2>Create/Edit Ad</h2>
           <form id="ad-form">
-              <div class="form-group"><label>Title</label><input type="text" required></div>
-              <div class="form-group"><label>Type</label><select><option>Image</option><option>Video</option></select></div>
-              <div class="form-group"><label>Media (URL or Upload)</label><input type="text" placeholder="https://example.com/image.jpg"></div>
-              <div class="form-group"><label>Expiry Date</label><input type="date" required></div>
-              <button type="submit" class="btn">Save Ad</button>
+              <div class="form-group"><label for="ad-title">Title</label><input id="ad-title" type="text" required></div>
+              <div class="form-group"><label for="ad-type">Type</label><select id="ad-type"><option>Image</option><option>Video</option></select></div>
+              <div class="form-group"><label for="ad-media">Media Upload</label><input id="ad-media" type="file" required></div>
+              <div class="form-group"><label for="ad-start-date">Start Date</label><input id="ad-start-date" type="date" required></div>
+              <div class="form-group"><label for="ad-expiry-date">Expiry Date</label><input id="ad-expiry-date" type="date" required></div>
+              <div class="form-actions"><button type="submit" class="btn-primary">Save Ad</button></div>
           </form>
       </div>
   </div>
 
   <script src="../assets/js/ads-management.js"></script>
-
-  <!-- Backend Notes:
-    - Replace {placeholders} with real data.
-    - Enforce role guards server-side matching these role markers.
-    - Wire uploads (camp, payments) to server endpoints.
-  -->
 </body>
 </html>
