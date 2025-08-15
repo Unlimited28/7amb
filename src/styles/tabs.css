@@ -1,32 +1,43 @@
-/* Tab container styles */
+/* Tab Navigation Styles */
 .tab-container {
     display: flex;
+    border-bottom: 2px solid #dee2e6;
     margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
 }
 
 .tab-btn {
-    background-color: transparent;
-    border: none;
-    padding: 10px 15px;
+    padding: 15px 25px;
     cursor: pointer;
-    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
     font-weight: 600;
-    color: #555;
-    transition: all 0.3s ease;
-    border-bottom: 3px solid transparent;
+    color: #495057;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; /* Align with container border */
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.tab-btn:hover {
+    color: #001f3f;
 }
 
 .tab-btn.active {
-    color: #001f3f; /* Navy Blue */
-    border-bottom: 3px solid #DAA520; /* Gold */
+    color: #001f3f;
+    border-color: #001f3f;
 }
 
-/* Tab content styles */
+/* Tab Content Styles */
 .tab-content {
     display: none;
 }
 
 .tab-content.active {
     display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

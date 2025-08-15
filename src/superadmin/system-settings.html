@@ -20,15 +20,15 @@
             <h2 class="role">Super Admin</h2>
         </div>
         <ul class="nav">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-users.html">Manage Users</a></li>
-            <li><a href="manage-admins.html">Manage Admins</a></li>
-            <li><a href="exams.html">Exams</a></li>
-            <li><a href="finance.html">Finance</a></li>
-            <li><a href="ads-management.html">Ads Management</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li class="active"><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="SUPER_ADMIN" class="active"><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="manage-users.html">User Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="exams.html">Exam Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="blog.html">Blog Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="gallery.html">Gallery Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="ads-management.html">Ads Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="finance.html">Finance (Oversight)</a></li>
+            <li data-role="SUPER_ADMIN"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
@@ -36,21 +36,69 @@
     <!-- Main Content -->
     <main class="main-content">
         <h1>System Settings</h1>
+        <p>Manage the core settings and content for the entire application.</p>
 
-        <section class="manage-section">
-            <form id="settings-form">
-                <div class="form-group"><label>Organization Name</label><input type="text" value="{Royal Ambassadors of Nigeria}"></div>
-                <div class="form-group"><label>Tagline</label><input type="text" value="{Building Boys into Godly Men}"></div>
-                <div class="form-group"><label>Mission</label><textarea rows="3">{Mission Statement...}</textarea></div>
-                <div class="form-group"><label>Vision</label><textarea rows="3">{Vision Statement...}</textarea></div>
-                <div class="form-group"><label>History</label><textarea rows="5">{History of the organization...}</textarea></div>
-                <div class="form-group"><label>Address</label><input type="text" value="{123 Baptist Lane, Abeokuta}"></div>
-                <div class="form-group"><label>Phone</label><input type="text" value="{+234 123 456 7890}"></div>
-                <div class="form-group"><label>Email</label><input type="email" value="{info@ranogun.com}"></div>
-                <div class="form-group"><label>Logo Upload</label><input type="file"></div>
-                <button type="submit" class="btn">Save Settings</button>
-            </form>
-        </section>
+        <form id="settings-form" class="professional-form">
+            <fieldset>
+                <legend>Branding</legend>
+                <div class="form-group">
+                    <label for="org-name">Organization Name</label>
+                    <input type="text" id="org-name" name="org-name" placeholder="e.g., Royal Ambassadors Ogun Baptist Conference" value="{org_name}">
+                    <small>This name appears across the public site and dashboards.</small>
+                </div>
+                <div class="form-group">
+                    <label for="org-tagline">Tagline</label>
+                    <input type="text" id="org-tagline" name="org-tagline" placeholder="e.g., Building Boys into Godly Men" value="{tagline}">
+                </div>
+                <div class="form-group">
+                    <label for="logo-upload">Logo Upload</label>
+                    <input type="file" id="logo-upload" name="logo-upload">
+                    <small>Upload a new logo. Recommended size: 200x50px.</small>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact Details</legend>
+                <div class="form-group">
+                    <label for="org-address">Address</label>
+                    <input type="text" id="org-address" name="org-address" value="{org_address}">
+                </div>
+                <div class="form-group">
+                    <label for="org-phone">Phone</label>
+                    <input type="tel" id="org-phone" name="org-phone" value="{org_phone}">
+                </div>
+                <div class="form-group">
+                    <label for="org-email">Email</label>
+                    <input type="email" id="org-email" name="org-email" value="{org_email}">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>About & Content</legend>
+                <div class="form-group">
+                    <label for="about-excerpt">About Excerpt (Homepage)</label>
+                    <textarea id="about-excerpt" name="about-excerpt" rows="3">{about_excerpt}</textarea>
+                    <small>A short summary shown on the homepage.</small>
+                </div>
+                <div class="form-group">
+                    <label for="mission">Mission Statement</label>
+                    <textarea id="mission" name="mission" rows="4">{mission}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="vision">Vision Statement</label>
+                    <textarea id="vision" name="vision" rows="4">{vision}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="history">History</label>
+                    <textarea id="history" name="history" rows="6">{history}</textarea>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Save All Settings</button>
+                <button type="reset" class="btn-secondary">Reset Fields</button>
+            </div>
+        </form>
     </main>
   </div>
 

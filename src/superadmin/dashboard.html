@@ -1,4 +1,4 @@
-<!-- ROLE: SuperAdminOnly -->
+<!-- ROLE: SUPER_ADMIN ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +18,16 @@
             <h2 class="role">Super Admin</h2>
         </div>
         <ul class="nav">
-            <li class="active"><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-users.html">Manage Users</a></li>
-            <li><a href="manage-admins.html">Manage Admins</a></li>
-            <li><a href="exams.html">Exams</a></li>
-            <li><a href="finance.html">Finance</a></li>
-            <li><a href="ads-management.html">Ads Management</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="system-settings.html">System Settings</a></li>
+            <!-- TODO: Add 'active' class dynamically based on current page -->
+            <li data-role="SUPER_ADMIN"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="SUPER_ADMIN"><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="manage-users.html">User Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="exams.html">Exam Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="blog.html">Blog Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="gallery.html">Gallery Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="ads-management.html">Ads Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="finance.html">Finance (Oversight)</a></li>
+            <li data-role="SUPER_ADMIN"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
@@ -35,11 +36,28 @@
     <main class="main-content">
       <!-- Top Profile Card -->
       <div class="profile-card">
+        <div class="user-uid" style="text-align: right; font-size: 0.8rem; color: #6c757d;">UID: <span data-placeholder="user-uid">{user_uid}</span></div>
+        <div class="header-actions">
+            <div class="notification-bell">
+                <button class="bell-icon">
+                    <span class="bell-badge" data-placeholder="unread-count">3</span>🔔
+                </button>
+                <div class="notification-dropdown">
+                    <h4>Notifications</h4>
+                    <div data-placeholder="notifications_list_dropdown">
+                        <a href="#" class="notification-item">New user registered</a>
+                        <a href="#" class="notification-item">Payment proof uploaded</a>
+                        <a href="#" class="notification-item">New blog post published</a>
+                    </div>
+                    <a href="notifications.html" class="view-all">View all notifications</a>
+                </div>
+            </div>
+            <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
+        </div>
         <div class="profile-info">
           <h2 data-placeholder="user-full-name">Welcome, {Super Admin Name}!</h2>
           <p>Role: <span data-placeholder="user-role">Super Administrator</span></p>
         </div>
-        <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
       </div>
 
       <!-- Statistics -->
@@ -82,5 +100,6 @@
     - Enforce role guards server-side matching these role markers.
     - Wire uploads (camp, payments) to server endpoints.
   -->
+  <script src="../assets/js/auth.js"></script>
 </body>
 </html>

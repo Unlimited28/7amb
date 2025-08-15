@@ -1,13 +1,13 @@
-<!-- ROLE: SuperAdminOnly -->
+<!-- ROLE: SUPER_ADMIN ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manage Exams - Super Admin</title>
+  <title>Exam Management - Super Admin</title>
   <link rel="stylesheet" href="../styles/dashboard.css">
   <link rel="stylesheet" href="../styles/manage.css">
-  <link rel="stylesheet" href="../styles/results.css"> <!-- Reusing for modal -->
+  <link rel="stylesheet" href="../styles/exam-management.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,96 +20,113 @@
             <h2 class="role">Super Admin</h2>
         </div>
         <ul class="nav">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-users.html">Manage Users</a></li>
-            <li><a href="manage-admins.html">Manage Admins</a></li>
-            <li class="active"><a href="exams.html">Exams</a></li>
-            <li><a href="finance.html">Finance</a></li>
-            <li><a href="ads-management.html">Ads Management</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="SUPER_ADMIN"><a href="system-settings.html">System Settings</a></li>
+            <li data-role="SUPER_ADMIN"><a href="manage-users.html">User Management</a></li>
+            <li data-role="SUPER_ADMIN" class="active"><a href="exams.html">Exam Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="blog.html">Blog Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="gallery.html">Gallery Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="ads-management.html">Ads Management</a></li>
+            <li data-role="SUPER_ADMIN"><a href="finance.html">Finance (Oversight)</a></li>
+            <li data-role="SUPER_ADMIN"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1>Manage Exams</h1>
+      <!-- Exam List View -->
+      <div id="exam-list-view">
+        <h1>Exam Management</h1>
+        <div class="controls">
+            <button id="show-exam-builder-btn" class="btn-primary">Create New Exam</button>
+        </div>
+        <table class="manage-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rank</th>
+                    <th># Questions</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody data-placeholder="exams_list">
+                <!-- Mock Data -->
+                <tr>
+                    <td>Envoy Rank Advancement</td>
+                    <td>Senior Envoy</td>
+                    <td>50</td>
+                    <td>60 mins</td>
+                    <td><span class="status-badge published">Published</span></td>
+                    <td class="actions">
+                        <button class="btn-icon" title="Preview">🔍</button>
+                        <button class="btn-icon" title="Edit">✏️</button>
+                        <button class="btn-icon" title="Delete">🗑️</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bible Knowledge Quiz 1</td>
+                    <td>Ambassador</td>
+                    <td>25</td>
+                    <td>30 mins</td>
+                    <td><span class="status-badge draft">Draft</span></td>
+                    <td class="actions">
+                        <button class="btn-icon" title="Preview">🔍</button>
+                        <button class="btn-icon" title="Edit">✏️</button>
+                        <button class="btn-icon" title="Delete">🗑️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
 
-        <section class="manage-section">
-            <div class="controls">
-                <button id="create-exam-btn" class="btn">Create New Exam</button>
-            </div>
-            <table class="manage-table">
-                <thead>
-                    <tr>
-                        <th>Exam Title</th>
-                        <th>Assigned Rank</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Mock Data -->
-                    <tr>
-                        <td>{Envoy Rank Advancement Exam}</td>
-                        <td>{Senior Intern}</td>
-                        <td><span class="status-badge published">Published</span></td>
-                        <td>
-                            <button class="btn edit-btn">Edit</button>
-                            <button class="btn assign-btn">Assign</button>
-                            <button class="btn unpublish-btn">Unpublish</button>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td>{Bible Knowledge Quiz}</td>
-                        <td>{Any}</td>
-                        <td><span class="status-badge draft">Draft</span></td>
-                        <td>
-                            <button class="btn edit-btn">Edit</button>
-                            <button class="btn assign-btn">Assign</button>
-                            <button class="btn publish-btn">Publish</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+      <!-- Exam Builder View (Initially hidden) -->
+      <div id="exam-builder-view" class="hidden">
+        <h1>Create New Exam</h1>
+        <form id="exam-builder-form">
+            <fieldset>
+                <legend>Exam Details</legend>
+                <div class="form-group">
+                    <label for="exam-title">Exam Title</label>
+                    <input type="text" id="exam-title" placeholder="e.g., Annual Bible Quiz" required>
+                </div>
+                <div class="form-group">
+                    <label for="exam-duration">Duration (minutes)</label>
+                    <input type="number" id="exam-duration" min="1" placeholder="e.g., 60" required>
+                </div>
+                <div class="form-group">
+                    <label for="exam-rank">Rank</label>
+                    <select id="exam-rank" required>
+                        <!-- Ranks will be populated by JS -->
+                    </select>
+                </div>
+            </fieldset>
 
-        <section class="manage-section">
-            <h2>Question Bank</h2>
-            <div data-placeholder="questions-bank">
-                <p>Placeholder for the question bank management interface.</p>
+            <fieldset>
+                <legend>Questions</legend>
+                <div id="question-builder-container">
+                    <!-- Questions will be dynamically added here -->
+                </div>
+                <button type="button" id="add-question-btn" class="btn-secondary">Add Question</button>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" name="action" value="save" class="btn-secondary">Save Draft</button>
+                <button type="button" name="action" value="preview" class="btn-secondary">Preview Exam</button>
+                <button type="submit" name="action" value="publish" class="btn-primary">Publish Exam</button>
+                <button type="button" id="back-to-list-btn" class="btn-secondary">Back to List</button>
             </div>
-        </section>
+        </form>
+        <div class="info-note">
+            <!-- ROLE: SUPER_ADMIN ONLY | Backend will persist questions & answers -->
+            <strong>Note:</strong> Saving a draft will store the exam privately. Publishing will make it available for Ambassadors to take.
+        </div>
+      </div>
     </main>
   </div>
 
-  <!-- Create/Edit Exam Modal -->
-  <div id="exam-modal" class="modal">
-      <div class="modal-content">
-          <span class="close-btn">&times;</span>
-          <h2 id="modal-title">Create New Exam</h2>
-          <form id="exam-form">
-              <div class="form-group">
-                  <label>Exam Title</label>
-                  <input type="text" required>
-              </div>
-              <div class="form-group">
-                  <label>Time Limit (minutes)</label>
-                  <input type="number" required>
-              </div>
-              <button type="submit" class="btn">Save Exam</button>
-          </form>
-      </div>
-  </div>
-
   <script src="../assets/js/superadmin-exams.js"></script>
-
-  <!-- Backend Notes:
-    - Replace {placeholders} with real data.
-    - Enforce role guards server-side matching these role markers.
-    - Wire uploads (camp, payments) to server endpoints.
-  -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!-- ROLE: PresidentOnly -->
+<!-- ROLE: PRESIDENT ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +18,12 @@
             <h2 class="role">President</h2>
         </div>
         <ul class="nav">
-            <li class="active"><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="manage-ambassadors.html">Manage Ambassadors</a></li>
-            <li><a href="exams.html">Exams (Approve)</a></li>
-            <li><a href="camp-registration.html">Camp Registration</a></li>
-            <li><a href="payments.html">Payments (Receipts)</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
-            <li><a href="../blog.html">Blog</a></li>
-            <li><a href="../gallery.html">Gallery</a></li>
+            <li data-role="PRESIDENT"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="PRESIDENT"><a href="exams.html">Exam Approvals</a></li>
+            <li data-role="PRESIDENT"><a href="payments.html">Payments</a></li>
+            <li data-role="PRESIDENT"><a href="camp-registration.html">Camp Registration</a></li>
+            <li data-role="PRESIDENT"><a href="manage-ambassadors.html">Ambassadors</a></li>
+            <li data-role="PRESIDENT"><a href="notifications.html">Notifications</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
@@ -34,12 +32,28 @@
     <main class="main-content">
       <!-- Top Profile Card -->
       <div class="profile-card">
+        <div class="user-uid" style="text-align: right; font-size: 0.8rem; color: #6c757d;">UID: <span data-placeholder="user-uid">{user_uid}</span></div>
+        <div class="header-actions">
+            <div class="notification-bell">
+                <button class="bell-icon">
+                    <span class="bell-badge" data-placeholder="unread-count">5</span>🔔
+                </button>
+                <div class="notification-dropdown">
+                    <h4>Notifications</h4>
+                    <div data-placeholder="notifications_list_dropdown">
+                        <a href="#" class="notification-item">New exam approval needed</a>
+                        <a href="#" class="notification-item">Payment proof received</a>
+                    </div>
+                    <a href="notifications.html" class="view-all">View all notifications</a>
+                </div>
+            </div>
+            <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
+        </div>
         <div class="profile-info">
           <h2 data-placeholder="user-full-name">Welcome, {President's Name}!</h2>
           <p>Role: <span data-placeholder="user-role">Association President</span></p>
           <p>Association: <span data-placeholder="user-association">{Association Name}</span></p>
         </div>
-        <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
       </div>
 
       <!-- Statistics -->
@@ -82,6 +96,7 @@
     </main>
   </div>
 
+  <script src="../assets/js/auth.js"></script>
   <script src="../assets/js/dashboard.js"></script>
 
   <!-- Backend Notes:

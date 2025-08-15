@@ -56,3 +56,26 @@ h1, h2 {
 .btn:hover {
     background-color: #001f3f; /* Navy Blue */
 }
+
+/* New styles for profile header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.profile-header h2 {
+    margin: 0;
+}
+
+.uid-display {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #001f3f;
+    background-color: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 5px;
+}

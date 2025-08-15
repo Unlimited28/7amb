@@ -47,10 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const showToast = (message) => {
+        const toast = document.createElement('div');
+        toast.className = 'toast show';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    };
+
     const submitExam = () => {
         clearInterval(timerInterval);
-        alert('Exam submitted successfully! (Frontend only)');
-        window.location.href = 'results.html';
+
+        // 1. Show success toast
+        showToast('Exam submitted successfully! Redirecting to home...');
+
+        // 2. Redirect to home page after a short delay
+        setTimeout(() => {
+            // 3. Use location.replace to prevent back navigation
+            // This replaces the current page in the session history,
+            // so the user can't navigate back to the exam page.
+            window.location.replace('../index.html');
+        }, 2000); // 2-second delay to allow user to see the toast
     };
 
     // --- Event Listeners ---

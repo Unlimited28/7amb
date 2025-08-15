@@ -1,35 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Manage Users script loaded.');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    const tableBody = document.querySelector('.manage-table tbody');
+    if (tabButtons.length > 0 && tabContents.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all tabs and content
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
 
-    if (tableBody) {
-        tableBody.addEventListener('click', (e) => {
-            const target = e.target;
-            if (target.classList.contains('activate-btn') || target.classList.contains('deactivate-btn')) {
-                const row = target.closest('tr');
-                const userName = row.cells[1].textContent;
-                const action = target.classList.contains('activate-btn') ? 'activate' : 'deactivate';
-
-                if (confirm(`Are you sure you want to ${action} ${userName}?`)) {
-                    alert(`User ${userName} has been ${action}d. (Frontend only)`);
-                    // In a real app, you would update the UI accordingly
-                    // For example, toggle the button text and class
-                    if (action === 'activate') {
-                        target.textContent = 'Deactivate';
-                        target.classList.remove('activate-btn');
-                        target.classList.add('deactivate-btn');
-                        row.querySelector('.status-badge').textContent = 'Active';
-                        row.querySelector('.status-badge').className = 'status-badge active';
-                    } else {
-                        target.textContent = 'Activate';
-                        target.classList.remove('deactivate-btn');
-                        target.classList.add('activate-btn');
-                        row.querySelector('.status-badge').textContent = 'Inactive';
-                        row.querySelector('.status-badge').className = 'status-badge revoked';
-                    }
+                // Activate the clicked tab and its content
+                button.classList.add('active');
+                const tabId = button.getAttribute('data-tab');
+                const activeContent = document.getElementById(`${tabId}-tab`);
+                if (activeContent) {
+                    activeContent.classList.add('active');
                 }
-            }
+            });
         });
     }
+
+    // TODO: Add logic for View/Toggle Status buttons (would require backend)
+    const actionButtons = document.querySelectorAll('.actions .btn-icon');
+    actionButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const action = e.currentTarget.title;
+            alert(`Frontend Only: Perform '${action}' action.`);
+        });
+    });
 });

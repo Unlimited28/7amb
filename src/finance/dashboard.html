@@ -1,4 +1,4 @@
-<!-- ROLE: FinanceOnly -->
+<!-- ROLE: FINANCE ONLY -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +18,9 @@
             <h2 class="role">Finance Panel</h2>
         </div>
         <ul class="nav">
-            <li class="active"><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="associations.html">Associations</a></li>
-            <li><a href="payment-requests.html">Payment Requests</a></li>
-            <li><a href="voucher-management.html">Voucher Management</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
+            <li data-role="FINANCE" class="active"><a href="dashboard.html">Dashboard</a></li>
+            <li data-role="FINANCE"><a href="payment-requests.html">Payment Requests</a></li>
+            <li data-role="FINANCE"><a href="voucher-management.html">Vouchers</a></li>
             <li><a href="../index.html">Log out</a></li>
         </ul>
     </aside>
@@ -31,34 +29,69 @@
     <main class="main-content">
       <!-- Top Profile Card -->
       <div class="profile-card">
+        <div class="user-uid" style="text-align: right; font-size: 0.8rem; color: #6c757d;">UID: <span data-placeholder="user-uid">{user_uid}</span></div>
+        <div class="header-actions">
+            <div class="notification-bell">
+                <button class="bell-icon">
+                    <span class="bell-badge" data-placeholder="unread-count">2</span>🔔
+                </button>
+                <div class="notification-dropdown">
+                    <h4>Notifications</h4>
+                    <div data-placeholder="notifications_list_dropdown">
+                         <a href="#" class="notification-item">Payment received</a>
+                         <a href="#" class="notification-item">Voucher expiring soon</a>
+                    </div>
+                    <a href="notifications.html" class="view-all">View all notifications</a>
+                </div>
+            </div>
+            <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
+        </div>
         <div class="profile-info">
           <h2 data-placeholder="user-full-name">Welcome, {Finance User Name}!</h2>
           <p>Role: <span data-placeholder="user-role">Finance Panel</span></p>
         </div>
-        <img src="../assets/director.jpg" alt="Profile Picture" class="avatar">
       </div>
 
       <!-- Statistics -->
       <div class="stats-grid">
         <div class="stat-card">
-          <p>Associations with Pending Payments</p>
-          <h3 data-placeholder="associations-with-pending">{associations_with_pending}</h3>
+          <p>Outstanding Requests</p>
+          <h3 data-placeholder="outstanding-requests">{outstanding_requests}</h3>
         </div>
         <div class="stat-card">
-          <p>Payment Requests Sent</p>
-          <h3 data-placeholder="payment-requests-sent">{payment_requests_sent}</h3>
-        </div>
-        <div class="stat-card">
-          <p>Active Vouchers</p>
+          <p>Vouchers Active</p>
           <h3 data-placeholder="vouchers-active">{vouchers_active}</h3>
+        </div>
+        <div class="stat-card">
+          <p>Recent Payments</p>
+          <h3 data-placeholder="recent-payments">{recent_payments}</h3>
         </div>
       </div>
 
-      <!-- Placeholder for recent activity or notifications -->
-       <section class="activity-feed">
-          <h2>Recent Payment Activities</h2>
-          <div class="feed-item">{Payment proof received from Agape Association}</div>
-          <div class="feed-item">{Payment request sent to Zion Association}</div>
+      <!-- Association List -->
+      <section class="manage-section">
+          <h2>Associations</h2>
+          <table class="manage-table">
+              <thead>
+                  <tr>
+                      <th>Association Name</th>
+                      <th>Outstanding Balance</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody data-placeholder="associations-list">
+                  <tr>
+                      <td>Agape Baptist Association</td>
+                      <td>₦15,000</td>
+                      <td class="actions"><a href="payment-requests.html" class="btn-sm-primary">Create Payment Request</a></td>
+                  </tr>
+                   <tr>
+                      <td>Zion Baptist Association</td>
+                      <td>₦0</td>
+                      <td class="actions"><a href="payment-requests.html" class="btn-sm-primary">Create Payment Request</a></td>
+                  </tr>
+              </tbody>
+          </table>
       </section>
 
     </main>
@@ -69,5 +102,6 @@
     - Enforce role guards server-side matching these role markers.
     - Wire uploads (camp, payments) to server endpoints.
   -->
+  <script src="../assets/js/auth.js"></script>
 </body>
 </html>

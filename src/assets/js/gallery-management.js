@@ -1,38 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Gallery Management script loaded.');
-
-    const modal = document.getElementById('image-modal');
+    // --- Modal Handling ---
     const addImageBtn = document.getElementById('add-image-btn');
+    const modal = document.getElementById('image-modal');
     const closeBtn = modal.querySelector('.close-btn');
     const imageForm = document.getElementById('image-form');
-    const galleryGrid = document.querySelector('.gallery-grid');
 
-    // Modal handling
     const openModal = () => modal.style.display = 'block';
     const closeModal = () => modal.style.display = 'none';
 
-    addImageBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
+    if (addImageBtn) addImageBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
     window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    // Handle form submission
-    imageForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Image added successfully! (Frontend only)');
-        imageForm.reset();
-        closeModal();
-    });
-
-    // Handle remove button
-    galleryGrid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-btn')) {
-            const item = e.target.closest('.gallery-item');
-            if (confirm('Are you sure you want to remove this image?')) {
-                alert('Image removed. (Frontend only)');
-                item.remove();
-            }
+        if (e.target === modal) {
+            closeModal();
         }
     });
+
+    // --- Form Submission ---
+    if (imageForm) {
+        imageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const caption = document.getElementById('image-caption').value;
+            const category = document.getElementById('image-category').value;
+            const imageFile = document.getElementById('image-upload').files[0];
+
+            if (!imageFile) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            // In a real app, you'd upload this data to the server
+            console.log({
+                caption,
+                category,
+                fileName: imageFile.name
+            });
+
+            alert('Frontend Only: Image saved!');
+            closeModal();
+            imageForm.reset();
+        });
+    }
+
+    // TODO: Add logic for reordering (e.g., using a library like SortableJS)
+    // and for edit/delete buttons.
 });
